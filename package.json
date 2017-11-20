@@ -1,0 +1,26 @@
+{
+  "name": "circles",
+  "version": "1.0.0",
+  "description": "Small JavaScript project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kellyzhou/circles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kellyzhou/circles/issues"
+  },
+  "homepage": "https://github.com/kellyzhou/circles#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "dependencies": {
+    "graceful-fs": "^4.1.11"
+  }
+}
