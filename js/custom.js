@@ -11,10 +11,31 @@ function drawCircle(x, y, radius, color){
 	context.closePath();
 }
 
-	drawCircle(100, 100, 50, 'pink');
-	drawCircle(200, 200, 50, 'blue');
+	drawCircle(100, 100, 50, "rgba(24,200,30,1.0)");
+	// drawCircle(200, 200, 50, 'blue');
+
+
+// To get random RGB values
+// Parameters: start and end values of the range of numbers
+function getRandomNumber(start, end){
+	return Math.floor((Math.random() * (end - start)) + start);
+}
+
+// Return a random RGBA color string
+// Parameters: chosen opacity
+function pickColor(opacity){
+	var red = getRandomNumber(0, 255);
+	var green = getRandomNumber(0, 255);
+	var blue = getRandomNumber(0, 255);
+	var rgbaValue = 'rgba(' + red + ',' + green + ',' + blue + ',' + opacity + ')';
+	return rgbaValue;
+}
+
+console.log(Math.random() * 255);
+console.log(getRandomNumber(0,255));
+console.log(pickColor(0.5));
 
 for (var i=0; i<1; i++){
-	// drawCircle(100, 100, 50, 'pink');
+	drawCircle(300, 300, 50, pickColor(0.4));
 }
 // context.fillRect(0, 0, 300, 150);
