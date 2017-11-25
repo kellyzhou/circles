@@ -1,4 +1,4 @@
-// Eric Meyer reset file
+// Eric Meyer reset file (meyer-reset)
 @import 'other/reset';
 
 .test {
@@ -6,10 +6,12 @@
 }
 
 body {
-	
+	width: 100%;
+	height: 100%;
+	background-color: blanchedalmond;
 }
 .container {
 	/*background-color: blue;*/
-	height: 100vh;
-	width: 100%;
+	/*height: 100vh;*/
+	/*width: 100%;*/
 }

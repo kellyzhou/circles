@@ -11,7 +11,7 @@ function drawCircle(x, y, radius, color){
 	context.closePath();
 }
 
-	drawCircle(100, 100, 50, "rgba(24,200,30,1.0)");
+	drawCircle(50, 50, 50, "rgba(24,200,30,1.0)");
 	// drawCircle(200, 200, 50, 'blue');
 
 
@@ -36,6 +36,6 @@ console.log(getRandomNumber(0,255));
 console.log(pickColor(0.5));
 
 for (var i=0; i<1; i++){
-	drawCircle(300, 300, 50, pickColor(0.4));
+	drawCircle(50 + 100/(Math.sqrt(2)), 50 + 100/(Math.sqrt(2)), 50, pickColor(0.4));
 }
 // context.fillRect(0, 0, 300, 150);
