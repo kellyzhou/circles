@@ -1,2 +1,2 @@
 # circles
-Small JavaScript project
+Small JavaScript project with random colored circles. HTML5 canvas and JS. 
