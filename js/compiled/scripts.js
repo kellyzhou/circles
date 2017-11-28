@@ -1,4 +1,7 @@
 var canvas = document.getElementById('canvas');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
 if (canvas.getContext) {
 	var context = canvas.getContext('2d');
 }
@@ -11,10 +14,8 @@ function drawCircle(x, y, radius, color){
 	context.closePath();
 }
 
-	drawCircle(50, 50, 50, "rgba(24,200,30,1.0)");
-	drawCircle(150, 50, 50, 'blue');
-
-	// drawCircle(200, 200, 50, 'blue');
+	// drawCircle(50, 50, 50, "rgba(24,200,30,1.0)");
+	// drawCircle(150, 50, 50, 'blue');
 
 
 // To get random RGB values
@@ -38,8 +39,35 @@ console.log(getRandomNumber(0,255));
 console.log(pickColor(0.5));
 
 // trig formula
-	drawCircle(50 + 100/(Math.sqrt(2)), 50 + 100/(Math.sqrt(2)), 50, pickColor(0.4));
+	// drawCircle(50 + 100/(Math.sqrt(2)), 50 + 100/(Math.sqrt(2)), 50, pickColor(0.4));
 
 // context.fillRect(0, 0, 300, 150);
 
-alert(window.innerWidth);
+
+// Fill canvas with straight rows of circles
+function fillCanvas(){
+	var width = window.innerWidth;
+	var height = window.innerHeight;
+
+	var circleRadius = 50;
+
+	var numberCirclesPerRow = Math.floor(width / circleRadius);
+	var numberRows = Math.floor(height / circleRadius);
+
+	for (var r = 1; r <= numberRows; r++){
+		for (var c = 1; c <= numberCirclesPerRow; c++) {
+			drawCircle( (circleRadius * 2 * (c-1)) + circleRadius, (circleRadius * 2 * (r-1)) + circleRadius, circleRadius, pickColor(0.35));
+		}
+	}
+}
+
+
+// circleRadius * 2 * (c-1) + circleRadius
+// =2c(circleRadius) - 2circleradius + circleRadius
+// =2c(circleRadius) - circleRadius
+
+// circleRadius * c + (c-1) * circleRadius
+// = circleRadius * c + c(circleRadius) - circleRadius
+// = 2c(circleRadius) - circleRadius
+
+fillCanvas();
