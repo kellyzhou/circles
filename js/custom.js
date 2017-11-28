@@ -41,3 +41,5 @@ console.log(pickColor(0.5));
 	drawCircle(50 + 100/(Math.sqrt(2)), 50 + 100/(Math.sqrt(2)), 50, pickColor(0.4));
 
 // context.fillRect(0, 0, 300, 150);
+
+alert(window.innerWidth);
