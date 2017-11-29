@@ -45,11 +45,11 @@ console.log(pickColor(0.5));
 
 
 // Fill canvas with straight rows of circles
-function fillCanvas(){
+function fillCanvas(radius){
 	var width = window.innerWidth;
 	var height = window.innerHeight;
 
-	var circleRadius = 50;
+	var circleRadius = radius;
 
 	var numberCirclesPerRow = Math.floor(width / circleRadius);
 	var numberRows = Math.floor(height / circleRadius);
@@ -70,4 +70,8 @@ function fillCanvas(){
 // = circleRadius * c + c(circleRadius) - circleRadius
 // = 2c(circleRadius) - circleRadius
 
-fillCanvas();
+fillCanvas(40);
+
+function fillCanvasRandom(){
+
+}
