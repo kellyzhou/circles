@@ -30,7 +30,7 @@ function pickColor(opacity){
 	var red = getRandomNumber(0, 255);
 	var green = getRandomNumber(0, 255);
 	var blue = getRandomNumber(0, 255);
-	var rgbaValue = 'rgba(' + red + ',' + green + ',' + blue + ',' + opacity + ')';
+	var rgbaValue = 'rgba(' + red + ',' + green + ',' + blue + ',' + opacity + ')'; // Concatenate values
 	return rgbaValue;
 }
 
