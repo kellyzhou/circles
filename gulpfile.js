@@ -1,7 +1,7 @@
-//// GULP TASKS
-// sass: compile SCSS into single CSS file
-// lint: check JS and compile into single JS file
-// watch: do both sass and lint tasks
+// BUILD TASKS
+//    sass: compile SCSS into single CSS file
+//    lint: check JS and compile into single JS file
+//    watch: do both sass and lint tasks
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');      // Compile SCSS

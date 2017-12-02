@@ -30,13 +30,13 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-.test {
-  width: 55.55556%; }
-
-body {
-  width: 100%;
+body, html {
+  background-color: #fbf7f0;
   height: 100%;
-  background-color: blanchedalmond; }
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%; }
 
 .container {
   /*background-color: blue;*/
