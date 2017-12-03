@@ -12,10 +12,11 @@ function drawCircle(x, y, radius, color){
 	context.fillStyle = color;
 	context.fill();
 	context.closePath();
+	context.addHitRegion({id: 'circle'});
 }
 
-	// drawCircle(50, 50, 50, "rgba(24,200,30,1.0)");
-	// drawCircle(150, 50, 50, 'blue');
+	drawCircle(50, 50, 50, "rgba(24,200,30,1.0)");
+	drawCircle(150, 50, 50, 'blue');
 
 
 // To get random RGB values
@@ -70,8 +71,14 @@ function fillCanvas(radius){
 // = circleRadius * c + c(circleRadius) - circleRadius
 // = 2c(circleRadius) - circleRadius
 
-fillCanvas(40);
+// fillCanvas(40);
 
 function fillCanvasRandom(){
 
 }
+
+canvas.addEventListener('click', function(event) {
+  if(event.region) {
+    alert('clicked');
+  }
+});
