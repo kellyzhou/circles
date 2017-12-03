@@ -82,7 +82,8 @@ function fillCanvasRandom(){
 }
 
 function regexCoordinates(text){
-	var regex = /([0-9])+/g;
+	// Match numbers
+	var regex = /([0-9])+/g; 
 	// var text = text; // need to check parameters?
 	var match = regex.exec(text);
 
@@ -92,13 +93,9 @@ function regexCoordinates(text){
 	
 }
 
-// var regex = /([0-9])+/g; 
-// var text = 'circle.200.30';
-// var match = regex.exec(text);
-// console.log(match);
-
 console.log(regexCoordinates('circle.200.304'));
 
+// Currently only works in FF or Chrome with experimental feature enabled
 canvas.addEventListener('click', function(event) {
   if(event.region) {
     alert(event.region);
