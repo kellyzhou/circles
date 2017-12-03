@@ -12,11 +12,11 @@ function drawCircle(x, y, radius, color){
 	context.fillStyle = color;
 	context.fill();
 	context.closePath();
-	context.addHitRegion({id: 'circle'});
+	context.addHitRegion({id: x+'.'+y});
 }
 
-	drawCircle(50, 50, 50, "rgba(24,200,30,1.0)");
-	drawCircle(150, 50, 50, 'blue');
+	// drawCircle(50, 50, 50, "rgba(24,200,30,1.0)");
+	// drawCircle(150, 50, 50, 'blue');
 
 
 // To get random RGB values
@@ -35,9 +35,9 @@ function pickColor(opacity){
 	return rgbaValue;
 }
 
-console.log(Math.random() * 255);
-console.log(getRandomNumber(0,255));
-console.log(pickColor(0.5));
+// console.log(Math.random() * 255);
+// console.log(getRandomNumber(0,255));
+// console.log(pickColor(0.5));
 
 // trig formula
 	// drawCircle(50 + 100/(Math.sqrt(2)), 50 + 100/(Math.sqrt(2)), 50, pickColor(0.4));
@@ -46,17 +46,21 @@ console.log(pickColor(0.5));
 
 
 // Fill canvas with straight rows of circles
+// Parameters: size of radius for the circles
 function fillCanvas(radius){
 	var width = window.innerWidth;
 	var height = window.innerHeight;
 
 	var circleRadius = radius;
 
+	// Round down to the number of circles that can fit in a row and to the number of rows that can fit in the browser window
 	var numberCirclesPerRow = Math.floor(width / circleRadius);
 	var numberRows = Math.floor(height / circleRadius);
 
 	for (var r = 1; r <= numberRows; r++){
 		for (var c = 1; c <= numberCirclesPerRow; c++) {
+			// Calculate the total diameters of the circles that came before your circle in the row and add a single circleRadius = x value
+			// Calculate the total diameters of the circles that came before your circle in the column (height) and add a single circleRadius = y value
 			drawCircle( (circleRadius * 2 * (c-1)) + circleRadius, (circleRadius * 2 * (r-1)) + circleRadius, circleRadius, pickColor(0.35));
 		}
 	}
@@ -71,14 +75,32 @@ function fillCanvas(radius){
 // = circleRadius * c + c(circleRadius) - circleRadius
 // = 2c(circleRadius) - circleRadius
 
-// fillCanvas(40);
+fillCanvas(40);
 
 function fillCanvasRandom(){
 
 }
 
+function regexCoordinates(text){
+	var regex = /([0-9])+/g;
+	// var text = text; // need to check parameters?
+	var match = regex.exec(text);
+
+	// console.log(match);
+	// return 'x: '+match[0]+' y: '+match[1];
+	return match;
+	
+}
+
+// var regex = /([0-9])+/g; 
+// var text = 'circle.200.30';
+// var match = regex.exec(text);
+// console.log(match);
+
+console.log(regexCoordinates('circle.200.304'));
+
 canvas.addEventListener('click', function(event) {
   if(event.region) {
-    alert('clicked');
+    alert(event.region);
   }
 });
