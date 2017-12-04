@@ -86,13 +86,11 @@ function regexCoordinates(text){
 	// var text = text; // need to check parameters?
 	var match = regex.exec(text);
 
-	// console.log(match);
-	// return 'x: '+match[0]+' y: '+match[1];
+	// Returns array of (x,y) coordinates
 	return match;
-	
 }
 
-// var regex = /([0-9])+/g; 
+// var regex = /([0-9])+/g;
 // var text = 'circle.200.30';
 // var match = regex.exec(text);
 // console.log(match);
@@ -102,5 +100,14 @@ console.log(regexCoordinates('circle.200.304'));
 canvas.addEventListener('click', function(event) {
   if(event.region) {
     alert(event.region);
+    refreshArt(40);
   }
 });
+
+
+// Reset circles
+function refreshArt(radius){
+	// Clear existing canvas (entire window)
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	fillCanvas(radius);
+}
