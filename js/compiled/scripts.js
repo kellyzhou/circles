@@ -35,15 +35,9 @@ function pickColor(opacity){
 	return rgbaValue;
 }
 
-// console.log(Math.random() * 255);
-// console.log(getRandomNumber(0,255));
-// console.log(pickColor(0.5));
 
 // trig formula
 	// drawCircle(50 + 100/(Math.sqrt(2)), 50 + 100/(Math.sqrt(2)), 50, pickColor(0.4));
-
-// context.fillRect(0, 0, 300, 150);
-
 
 // Fill canvas with straight rows of circles
 // Parameters: size of radius for the circles
@@ -86,14 +80,9 @@ function regexCoordinates(text){
 	// var text = text; // need to check parameters?
 	var match = regex.exec(text);
 
-	// Returns array of (x,y) coordinates
+	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
 	return match;
 }
-
-// var regex = /([0-9])+/g;
-// var text = 'circle.200.30';
-// var match = regex.exec(text);
-// console.log(match);
 
 console.log(regexCoordinates('circle.200.304'));
 
