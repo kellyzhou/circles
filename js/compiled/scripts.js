@@ -47,9 +47,9 @@ function fillCanvas(radius){
 
 	var circleRadius = radius;
 
-	// Round down to the number of circles that can fit in a row and to the number of rows that can fit in the browser window
-	var numberCirclesPerRow = Math.floor(width / circleRadius);
-	var numberRows = Math.floor(height / circleRadius);
+	// Round down (floor) to the number of circles that can fit in a row and to the number of rows that can fit in the browser window. Round up (ceil) to get circles to completely fill the browser space (even if some are cut off)
+	var numberCirclesPerRow = Math.ceil(width / (circleRadius*2));
+	var numberRows = Math.ceil(height / (circleRadius*2));
 
 	for (var r = 1; r <= numberRows; r++){
 		for (var c = 1; c <= numberCirclesPerRow; c++) {
@@ -84,7 +84,7 @@ function regexCoordinates(text){
 	return match;
 }
 
-console.log(regexCoordinates('circle.200.304'));
+// console.log(regexCoordinates('circle.200.304'));
 
 canvas.addEventListener('click', function(event) {
   if(event.region) {
