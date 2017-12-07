@@ -17,7 +17,7 @@ function drawCircle(x, y, radius, color){
 
 	// drawCircle(50, 50, 50, "rgba(24,200,30,1.0)");
 	// drawCircle(150, 50, 50, 'blue');
-
+	// context.translate(50,300);
 
 // To get random RGB values
 // Parameters: start and end values of the range of numbers
