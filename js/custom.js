@@ -77,7 +77,7 @@ function fillCanvasRandom(){
 
 function regexCoordinates(text){
 	// Match numbers
-	var regex = /([0-9])+/g; 
+	var regex = /([0-9])+/g;
 	// var text = text; // need to check parameters?
 	var match = regex.exec(text);
 
@@ -87,18 +87,34 @@ function regexCoordinates(text){
 
 console.log(regexCoordinates('circle.200.304'));
 
+$(document).ready(function(){
+	// console.log('documentread');
+});
+
+$(window).on('load', function(){
+	$('#reset').on('click', function(){
+		refreshArt(40);
+	});
+	// var resetButton = document.getElementById('reset');
+	// $(resetButton).on('click', alert('hi'));// console.log('hi'); //refreshArt(40);
+});
+
 // Currently only works in FF or Chrome with experimental feature enabled
 canvas.addEventListener('click', function(event) {
   if(event.region) {
-    alert(event.region);
+    // alert(event.region);
     refreshArt(40);
   }
 });
-
 
 // Reset circles
 function refreshArt(radius){
 	// Clear existing canvas (entire window)
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	fillCanvas(radius);
+}
+
+function randomMove(x, y, radius){
+	// context.beginPath();
+	// context.clearRect()
 }
