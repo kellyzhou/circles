@@ -95,6 +95,10 @@ $(window).on('load', function(){
 	$('#reset').on('click', function(){
 		refreshArt(40);
 	});
+
+	$('#clear').on('click', function(){
+		clearArt();
+	});
 	// var resetButton = document.getElementById('reset');
 	// $(resetButton).on('click', alert('hi'));// console.log('hi'); //refreshArt(40);
 });
@@ -107,10 +111,15 @@ canvas.addEventListener('click', function(event) {
   }
 });
 
+// Clear circles
+function clearArt(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 // Reset circles
 function refreshArt(radius){
 	// Clear existing canvas (entire window)
-	context.clearRect(0, 0, canvas.width, canvas.height);
+	clearArt();
 	fillCanvas(radius);
 }
 

@@ -10,6 +10,12 @@ body, html {
 	width: 100%; // needed for full-size canvas
 }
 
+button {
+	border: none;
+	border-radius: 5px;
+	padding: 10px 15px;
+}
+
 .controls {
 	margin: 10px 10px 0px 0px;
 	position: absolute;

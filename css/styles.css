@@ -38,6 +38,11 @@ body, html {
   padding: 0;
   width: 100%; }
 
+button {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px; }
+
 .controls {
   margin: 10px 10px 0px 0px;
   position: absolute;
