@@ -6,6 +6,8 @@ if (canvas.getContext) {
 	var context = canvas.getContext('2d');
 }
 
+// **** Draw a circle on canvas with an (experimental) HitRegion ID
+// **** Parameters: (x,y) coordinates of the circle's center. radius of circle, color
 function drawCircle(x, y, radius, color){
 	context.beginPath();
 	context.arc(x, y, radius, 0, Math.PI * 2, true);
@@ -19,14 +21,14 @@ function drawCircle(x, y, radius, color){
 	// drawCircle(150, 50, 50, 'blue');
 	// context.translate(50,300);
 
-// To get random RGB values
-// Parameters: start and end values of the range of numbers
+// **** To get random RGB values
+// **** Parameters: start and end values of the range of numbers
 function getRandomNumber(start, end){
 	return Math.floor((Math.random() * (end - start)) + start);
 }
 
-// Return a random RGBA color string
-// Parameters: chosen opacity
+// **** Return a random RGBA color string
+// **** Parameters: chosen opacity
 function pickColor(opacity){
 	var red = getRandomNumber(0, 255);
 	var green = getRandomNumber(0, 255);
@@ -39,8 +41,8 @@ function pickColor(opacity){
 // trig formula
 	// drawCircle(50 + 100/(Math.sqrt(2)), 50 + 100/(Math.sqrt(2)), 50, pickColor(0.4));
 
-// Fill canvas with straight rows of circles
-// Parameters: size of radius for the circles
+// **** Fill canvas with straight rows of circles
+// **** Parameters: size of radius for the circles
 function fillCanvas(radius){
 	var width = window.innerWidth;
 	var height = window.innerHeight;
@@ -55,7 +57,8 @@ function fillCanvas(radius){
 		for (var c = 1; c <= numberCirclesPerRow; c++) {
 			// Calculate the total diameters of the circles that came before your circle in the row and add a single circleRadius = x value
 			// Calculate the total diameters of the circles that came before your circle in the column (height) and add a single circleRadius = y value
-			drawCircle( (circleRadius * 2 * (c-1)) + circleRadius, (circleRadius * 2 * (r-1)) + circleRadius, circleRadius, pickColor(0.35));
+			// Opacity is set in pickColor
+			drawCircle( (circleRadius * 2 * (c-1)) + circleRadius, (circleRadius * 2 * (r-1)) + circleRadius, circleRadius, pickColor(0.3));
 		}
 	}
 }
@@ -75,6 +78,8 @@ function fillCanvasRandom(){
 
 }
 
+// **** Get (x,y) coordinates for radius of each circle
+// **** Parameters: string
 function regexCoordinates(text){
 	// Match numbers
 	var regex = /([0-9])+/g;
@@ -103,6 +108,13 @@ $(window).on('load', function(){
 	// $(resetButton).on('click', alert('hi'));// console.log('hi'); //refreshArt(40);
 });
 
+$(window).on('resize', function(){
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	refreshArt(40);
+});
+
+// **** Click on a circle to refresh all circles
 // Currently only works in FF or Chrome with experimental feature enabled
 canvas.addEventListener('click', function(event) {
   if(event.region) {
@@ -111,12 +123,12 @@ canvas.addEventListener('click', function(event) {
   }
 });
 
-// Clear circles
+// **** Clear circles
 function clearArt(){
 	context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// Reset circles
+// **** Reset circles
 function refreshArt(radius){
 	// Clear existing canvas (entire window)
 	clearArt();
