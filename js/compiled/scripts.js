@@ -17,10 +17,6 @@ function drawCircle(x, y, radius, color){
 	context.addHitRegion({id: x+'.'+y});
 }
 
-	// drawCircle(50, 50, 50, "rgba(24,200,30,1.0)");
-	// drawCircle(150, 50, 50, 'blue');
-	// context.translate(50,300);
-
 // **** To get random RGB values
 // **** Parameters: start and end values of the range of numbers
 function getRandomNumber(start, end){
@@ -63,15 +59,6 @@ function fillCanvas(radius){
 	}
 }
 
-
-// circleRadius * 2 * (c-1) + circleRadius
-// =2c(circleRadius) - 2circleradius + circleRadius
-// =2c(circleRadius) - circleRadius
-
-// circleRadius * c + (c-1) * circleRadius
-// = circleRadius * c + c(circleRadius) - circleRadius
-// = 2c(circleRadius) - circleRadius
-
 fillCanvas(40);
 
 function fillCanvasRandom(){
@@ -93,7 +80,6 @@ function regexCoordinates(text){
 console.log(regexCoordinates('circle.200.304'));
 
 $(document).ready(function(){
-	// console.log('documentread');
 });
 
 $(window).on('load', function(){
@@ -104,8 +90,6 @@ $(window).on('load', function(){
 	$('#clear').on('click', function(){
 		clearArt();
 	});
-	// var resetButton = document.getElementById('reset');
-	// $(resetButton).on('click', alert('hi'));// console.log('hi'); //refreshArt(40);
 });
 
 $(window).on('resize', function(){
@@ -118,7 +102,6 @@ $(window).on('resize', function(){
 // Currently only works in FF or Chrome with experimental feature enabled
 canvas.addEventListener('click', function(event) {
   if(event.region) {
-    // alert(event.region);
     refreshArt(40);
   }
 });
@@ -137,5 +120,5 @@ function refreshArt(radius){
 
 function randomMove(x, y, radius){
 	// context.beginPath();
-	// context.clearRect()
+	// context.clearRect();
 }
