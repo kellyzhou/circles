@@ -98,6 +98,25 @@ $(window).on('resize', function(){
 	refreshArt(40);
 });
 
+console.log(document.getElementById('controls__circle-size').value);
+
+// document.getElementById('controls__form').addEventListener('submit', submitForm);
+
+// var controlsForm = document.getElementById('controls__form');
+// controlsForm.addEventListener('submit', submitForm);
+
+var controlForm = document.getElementById('go');
+go.onclick = submitForm;
+
+function submitForm(){
+	// e.preventDefault();
+	var newRadius = document.getElementById('controls__circle-size').value;
+	// alert(newRadius);
+	// console.log(canvas.width + ' ' + canvas.height);
+	refreshArt(newRadius);
+	// alert('hey');
+}
+
 // **** Click on a circle to refresh all circles
 // Currently only works in FF or Chrome with experimental feature enabled
 canvas.addEventListener('click', function(event) {
