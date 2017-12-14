@@ -4,6 +4,7 @@ canvas.height = window.innerHeight;
 
 if (canvas.getContext) {
 	var context = canvas.getContext('2d');
+	context.save();
 }
 
 // **** Draw a circle on canvas with an (experimental) HitRegion ID
@@ -59,7 +60,7 @@ function fillCanvas(radius){
 	}
 }
 
-fillCanvas(40);
+// fillCanvas(40);
 
 function fillCanvasRandom(){
 
@@ -83,6 +84,8 @@ $(document).ready(function(){
 });
 
 $(window).on('load', function(){
+	fillCanvas(40);
+
 	$('#reset').on('click', function(){
 		refreshArt(40);
 	});
@@ -98,23 +101,26 @@ $(window).on('resize', function(){
 	refreshArt(40);
 });
 
-console.log(document.getElementById('controls__circle-size').value);
+// var controlForm = document.getElementById('go');
+// go.onclick = getNewRadius;
 
-// document.getElementById('controls__form').addEventListener('submit', submitForm);
-
-// var controlsForm = document.getElementById('controls__form');
-// controlsForm.addEventListener('submit', submitForm);
-
-var controlForm = document.getElementById('go');
-go.onclick = submitForm;
-
-function submitForm(){
-	// e.preventDefault();
+$('.controls').on('click', '#go', function(){
 	var newRadius = document.getElementById('controls__circle-size').value;
+	if ( newRadius.length !== 0 ){
+		context.restore();
+		clearArt();
+		fillCanvas(newRadius);
+	}
+	else {
+		newRadius = 40;
+	}
+});
+
+function getNewRadius(){
+	var newRadius = document.getElementById('controls__circle-size').value.length !== 0 ? document.getElementById('controls__circle-size').value : 40;
 	// alert(newRadius);
 	// console.log(canvas.width + ' ' + canvas.height);
-	refreshArt(newRadius);
-	// alert('hey');
+	return newRadius;
 }
 
 // **** Click on a circle to refresh all circles
