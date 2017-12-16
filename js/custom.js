@@ -78,7 +78,7 @@ function regexCoordinates(text){
 	return match;
 }
 
-console.log(regexCoordinates('circle.200.304'));
+// console.log(regexCoordinates('circle.200.304'));
 
 $(document).ready(function(){
 });
@@ -110,6 +110,7 @@ $('.controls').on('click', '#go', function(){
 		context.restore();
 		clearArt();
 		fillCanvas(newRadius);
+		alert(canvas.width + ' ' + canvas.height);
 	}
 	else {
 		newRadius = 40;
