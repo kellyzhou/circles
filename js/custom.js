@@ -85,6 +85,8 @@ $(window).on('load', function(){
 	fillCanvas(40);
 
 	$('#reset').on('click', function(){
+		var setRadius = document.getElementById('controls__circle-size');
+		setRadius.value = '';
 		refreshArt(40);
 	});
 
