@@ -60,8 +60,6 @@ function fillCanvas(radius){
 	}
 }
 
-// fillCanvas(40);
-
 function fillCanvasRandom(){
 
 }
@@ -105,16 +103,10 @@ $(window).on('resize', function(){
 // go.onclick = getNewRadius;
 
 $('.controls').on('click', '#go', function(){
-	var newRadius = document.getElementById('controls__circle-size').value;
-	if ( newRadius.length !== 0 ){
-		context.restore();
-		clearArt();
-		fillCanvas(newRadius);
-		alert(canvas.width + ' ' + canvas.height);
-	}
-	else {
-		newRadius = 40;
-	}
+	var newRadius = document.getElementById('controls__circle-size').value.length !== 0 ? document.getElementById('controls__circle-size').value : 40;
+	newRadius = parseInt(newRadius); // convert from string
+
+	refreshArt(newRadius);
 });
 
 function getNewRadius(){
