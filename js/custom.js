@@ -105,16 +105,18 @@ $(window).on('resize', function(){
 // go.onclick = getNewRadius;
 
 $('.controls').on('click', '#go', function(){
-	var newRadius = document.getElementById('controls__circle-size').value.length !== 0 ? document.getElementById('controls__circle-size').value : 40;
-	newRadius = parseInt(newRadius); // convert from string
+	// var newRadius = document.getElementById('controls__circle-size').value.length !== 0 ? document.getElementById('controls__circle-size').value : 40;
+	// newRadius = parseInt(newRadius); // convert from string
 
-	refreshArt(newRadius);
+	// refreshArt(newRadius);
+	var newValue = getNewRadius('controls__circle-size');
+	refreshArt(newValue);
+
 });
 
-function getNewRadius(){
-	var newRadius = document.getElementById('controls__circle-size').value.length !== 0 ? document.getElementById('controls__circle-size').value : 40;
-	// alert(newRadius);
-	// console.log(canvas.width + ' ' + canvas.height);
+function getNewRadius(inputValueID){
+	var newRadius = document.getElementById(inputValueID).value.length !== 0 ? document.getElementById(inputValueID).value : 40;
+	newRadius = parseInt(newRadius); // convert from string
 	return newRadius;
 }
 
