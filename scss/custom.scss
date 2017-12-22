@@ -12,9 +12,14 @@ body, html {
 }
 
 button {
+	background-color: #fbf7f0;
 	border: none;
 	border-radius: 5px;
 	padding: 10px 15px;
+}
+
+input, button, .controls {
+	color: #999;
 }
 
 .controls {
