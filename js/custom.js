@@ -124,7 +124,8 @@ function getNewRadius(inputValueID){
 // Currently only works in FF or Chrome with experimental feature enabled
 canvas.addEventListener('click', function(event) {
   if(event.region) {
-    refreshArt(40);
+    var newValue = getNewRadius('controls__circle-size');
+    refreshArt(newValue);
   }
 });
 
