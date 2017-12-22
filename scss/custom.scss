@@ -1,8 +1,11 @@
 // Eric Meyer reset file (meyer-reset)
 @import 'other/reset';
 
+$light-text: #999;
+$background-color: #fbf7f0;
+
 body, html {
-	background-color: #fbf7f0;
+	background-color: $background-color;
 	font-family: 'Raleway', Helvetica, Arial, sans-serif;;
 	height: 100%; // needed for full-size canvas
 	margin: 0;
@@ -12,7 +15,7 @@ body, html {
 }
 
 button {
-	background-color: #fbf7f0;
+	background-color: $background-color;
 	border: none;
 	border-radius: 5px;
 	padding: 10px 15px;
