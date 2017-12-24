@@ -98,25 +98,27 @@ $(window).on('load', function(){
 $(window).on('resize', function(){
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
-	refreshArt(40);
+
+	// Reset using user input
+	var newValue = getNewRadius('controls__circle-size');
+	refreshArt(newValue);
 });
 
 // var controlForm = document.getElementById('go');
 // go.onclick = getNewRadius;
 
 $('.controls').on('click', '#go', function(){
-	// var newRadius = document.getElementById('controls__circle-size').value.length !== 0 ? document.getElementById('controls__circle-size').value : 40;
-	// newRadius = parseInt(newRadius); // convert from string
-
-	// refreshArt(newRadius);
 	var newValue = getNewRadius('controls__circle-size');
 	refreshArt(newValue);
 
 });
 
 function getNewRadius(inputValueID){
+	// If the radius input field is not empty, use the value. Otherwise, default to radius = 40
 	var newRadius = document.getElementById(inputValueID).value.length !== 0 ? document.getElementById(inputValueID).value : 40;
-	newRadius = parseInt(newRadius); // convert from string
+
+	// Convert from string
+	newRadius = parseInt(newRadius);
 	return newRadius;
 }
 
