@@ -82,12 +82,12 @@ $(document).ready(function(){
 });
 
 $(window).on('load', function(){
-	fillCanvas(40);
+	fillCanvas(30);
 
 	$('#reset').on('click', function(){
 		var setRadius = document.getElementById('controls__circle-size');
 		setRadius.value = '';
-		refreshArt(40);
+		refreshArt(30);
 	});
 
 	$('#clear').on('click', function(){
@@ -113,9 +113,18 @@ $('.controls').on('click', '#go', function(){
 
 });
 
+$('#controls__circle-size').keydown(function(event){
+	var x = event.keyCode; // Enter key has a keycode of 13
+	if ( x == 13 ) {
+		var newValue = getNewRadius('controls__circle-size');
+		refreshArt(newValue);
+	}
+});
+
+
 function getNewRadius(inputValueID){
-	// If the radius input field is not empty, use the value. Otherwise, default to radius = 40
-	var newRadius = document.getElementById(inputValueID).value.length !== 0 ? document.getElementById(inputValueID).value : 40;
+	// If the radius input field is not empty, use the value. Otherwise, default to radius = 30
+	var newRadius = document.getElementById(inputValueID).value.length !== 0 ? document.getElementById(inputValueID).value : 30;
 
 	// Convert from string
 	newRadius = parseInt(newRadius);
