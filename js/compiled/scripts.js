@@ -64,20 +64,6 @@ function fillCanvasRandom(){
 
 }
 
-// **** Get (x,y) coordinates for radius of each circle
-// **** Parameters: string
-function regexCoordinates(text){
-	// Match numbers
-	var regex = /([0-9])+/g;
-	// var text = text; // need to check parameters?
-	var match = regex.exec(text);
-
-	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
-	return match;
-}
-
-// console.log(regexCoordinates('circle.200.304'));
-
 $(document).ready(function(){
 });
 
@@ -135,10 +121,36 @@ function getNewRadius(inputValueID){
 // Currently only works in FF or Chrome with experimental feature enabled
 canvas.addEventListener('click', function(event) {
   if(event.region) {
-    var newValue = getNewRadius('controls__circle-size');
-    refreshArt(newValue);
+  	// console.log(event.region);
+  	var coordinates = [];
+  	coordinates = regexCoordinates(event.region);
+  	// alert(coordinates);
+    // var newValue = getNewRadius('controls__circle-size');
+    // refreshArt(newValue);
   }
 });
+
+function randomMove(x, y, radius){
+	// context.beginPath();
+	// context.clearRect();
+}
+
+// **** Get (x,y) coordinates for radius of each circle
+// **** Parameters: string
+function regexCoordinates(text){
+	// Match numbers
+	var regex = /([0-9])+/g;
+
+	// var match = regex.exec(text);
+	// var matches = text.match(regex);
+	// Make sure it's a string
+	var matches = String(text).match(regex);
+
+	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
+	return matches;
+}
+
+console.log(regexCoordinates('208.704'));
 
 // **** Clear circles
 function clearArt(){
@@ -152,7 +164,3 @@ function refreshArt(radius){
 	fillCanvas(radius);
 }
 
-function randomMove(x, y, radius){
-	// context.beginPath();
-	// context.clearRect();
-}
