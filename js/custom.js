@@ -125,12 +125,23 @@ canvas.addEventListener('click', function(event) {
   	var coordinates = [];
   	coordinates = regexCoordinates(event.region);
   	// alert(coordinates);
-    // var newValue = getNewRadius('controls__circle-size');
-    // refreshArt(newValue);
+  	console.log(coordinates[0]);
+  	var radiusCircle = getNewRadius('controls__circle-size');
+  	// alert(radiusCircle);
+
+  	// console.log(canvas.width);
+  	var regionID = coordinates[0] + "." + coordinates[1];
+  	// document.getElementById(regionID).css('display', 'none');
   }
 });
 
 function randomMove(x, y, radius){
+	// Assuming the entire circle is within the limits of the canvas (browser window), the radius must be at least a radius-length within the canvas
+	var maxWidth = canvas.width - parseInt(radius);
+	var maxHeight = canvas.height - parseInt(radius);
+	var minWidth = 0 + parseInt(radius);
+	var minHeight = 0 + parseInt(radius);
+
 	// context.beginPath();
 	// context.clearRect();
 }
@@ -142,7 +153,7 @@ function regexCoordinates(text){
 	var regex = /([0-9])+/g;
 
 	// var match = regex.exec(text);
-	// var matches = text.match(regex);
+
 	// Make sure it's a string
 	var matches = String(text).match(regex);
 
