@@ -126,13 +126,14 @@ canvas.addEventListener('click', function(event) {
   	coordinates = regexCoordinates(event.region);
   	// alert(coordinates);
   	console.log(coordinates[0] + ' ' + coordinates[1]);
-  	var xStart = coordinates[0] - 30;
-  	var yStart = coordinates[1] - 30;
-  	var xStop = parseInt( coordinates[0] ) + 30 ;
-  	var yStop = parseInt( coordinates[1] ) + 30 ;
-  	// console.log(xStop + ' ' + yStop);
-  	// context.clearRect(coordinates[0] - 20, coordinates[1] - 20, coordinates[0] + 20, coordinates[1] + 20);
-  	context.clearRect(xStart, yStart, 60, 60); // (x, y, width, height)
+
+  	var newValue = getNewRadius('controls__circle-size');
+
+  	var xStart = coordinates[0] - newValue;
+  	var yStart = coordinates[1] - newValue;
+
+  	// newValue is radius (defaults to 30), * 2 for diameter
+  	context.clearRect(xStart, yStart, newValue * 2, newValue * 2); // (x, y, width, height)
 
   	var radiusCircle = getNewRadius('controls__circle-size');
   	// alert(radiusCircle);
