@@ -125,7 +125,15 @@ canvas.addEventListener('click', function(event) {
   	var coordinates = [];
   	coordinates = regexCoordinates(event.region);
   	// alert(coordinates);
-  	console.log(coordinates[0]);
+  	console.log(coordinates[0] + ' ' + coordinates[1]);
+  	var xStart = coordinates[0] - 30;
+  	var yStart = coordinates[1] - 30;
+  	var xStop = parseInt( coordinates[0] ) + 30 ;
+  	var yStop = parseInt( coordinates[1] ) + 30 ;
+  	// console.log(xStop + ' ' + yStop);
+  	// context.clearRect(coordinates[0] - 20, coordinates[1] - 20, coordinates[0] + 20, coordinates[1] + 20);
+  	context.clearRect(xStart, yStart, 60, 60); // (x, y, width, height)
+
   	var radiusCircle = getNewRadius('controls__circle-size');
   	// alert(radiusCircle);
 
@@ -161,7 +169,7 @@ function regexCoordinates(text){
 	return matches;
 }
 
-console.log(regexCoordinates('208.704'));
+// console.log(regexCoordinates('208.704'));
 
 // **** Clear circles
 function clearArt(){
