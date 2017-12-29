@@ -124,9 +124,7 @@ canvas.addEventListener('click', function(event) {
   	// console.log(event.region);
   	var coordinates = [];
   	coordinates = regexCoordinates(event.region);
-  	// alert(coordinates);
-  	console.log(coordinates[0] + ' ' + coordinates[1]);
-
+  	
   	var newValue = getNewRadius('controls__circle-size');
 
   	var xStart = coordinates[0] - newValue;
