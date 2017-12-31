@@ -124,19 +124,16 @@ canvas.addEventListener('click', function(event) {
   	// console.log(event.region);
   	var coordinates = [];
   	coordinates = regexCoordinates(event.region);
-  	
+
   	var newValue = getNewRadius('controls__circle-size');
 
+  	// Get the left/top most coordinates of the square encapsulating the clicked circle (region ID coordinates minus radius)
   	var xStart = coordinates[0] - newValue;
   	var yStart = coordinates[1] - newValue;
 
   	// newValue is radius (defaults to 30), * 2 for diameter
   	context.clearRect(xStart, yStart, newValue * 2, newValue * 2); // (x, y, width, height)
 
-  	var radiusCircle = getNewRadius('controls__circle-size');
-  	// alert(radiusCircle);
-
-  	// console.log(canvas.width);
   	var regionID = coordinates[0] + "." + coordinates[1];
   	// document.getElementById(regionID).css('display', 'none');
   }
