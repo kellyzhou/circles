@@ -135,10 +135,11 @@ canvas.addEventListener('click', function(event) {
   	// newValue is radius (defaults to 30), * 2 for diameter
   	context.clearRect(xStart, yStart, newValue * 2, newValue * 2); // (x, y, width, height)
 
-  	var regionID = "'" + coordinates[0] + "." + coordinates[1] + "'";
+  	var regionID = coordinates[0] + "." + coordinates[1];
   	// alert(regionID);
-  	var canvasID = 'canvas';
-  	document.getElementById(regionID).setAttribute('style', 'background-color: red');
+  	// var canvasID = 'canvas';
+
+  	document.getElementById("'" + event.region + "'").setAttribute('style', 'background-color: red');
   }
 });
 
@@ -149,6 +150,7 @@ function randomMove(x, y, radius){
 	var minWidth = 0 + parseInt(radius);
 	var minHeight = 0 + parseInt(radius);
 
+	// Another way, with circles that can go beyond the browser limit
 	// context.beginPath();
 	// context.clearRect();
 }
