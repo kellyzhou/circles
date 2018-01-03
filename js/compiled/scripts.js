@@ -161,9 +161,7 @@ function regexCoordinates(text){
 	// Match numbers
 	var regex = /([0-9])+/g;
 
-	// var match = regex.exec(text);
-
-	// Make sure it's a string
+	// Make sure it's a string and return all matches (vs exec)
 	var matches = String(text).match(regex);
 
 	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
