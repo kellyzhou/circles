@@ -139,7 +139,8 @@ canvas.addEventListener('click', function(event) {
   	// alert(regionID);
   	// var canvasID = 'canvas';
 
-  	document.getElementById("'" + event.region + "'").setAttribute('style', 'background-color: red');
+  	// document.getElementById("'" + event.region + "'").setAttribute('style', 'background-color: red');
+  	randomMove(0, 0, newValue);
   }
 });
 
@@ -150,6 +151,10 @@ function randomMove(x, y, radius){
 	var minWidth = 0 + parseInt(radius);
 	var minHeight = 0 + parseInt(radius);
 
+	var newX = Math.floor((Math.random() * (maxWidth - minWidth)) + minWidth);
+	var newY = Math.floor((Math.random() * (maxHeight - minHeight)) + minHeight);
+
+	drawCircle(newX, newY, radius, pickColor(1));
 	// Another way, with circles that can go beyond the browser limit
 	// context.beginPath();
 	// context.clearRect();
