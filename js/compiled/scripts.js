@@ -123,7 +123,6 @@ canvas.addEventListener('click', function(event) {
   if(event.region) {
   	var coordinates = [];
   	coordinates = regexCoordinates(event.region);
-  	// alert(event.region);
 
   	var newValue = getNewRadius('controls__circle-size');
 
@@ -138,25 +137,27 @@ canvas.addEventListener('click', function(event) {
   	}
 
   	var regionID = coordinates[0] + "." + coordinates[1];
-  	// alert(regionID);
   	// var canvasID = 'canvas';
 
   	// document.getElementById("'" + event.region + "'").setAttribute('style', 'background-color: red');
-  	randomMove(0, 0, newValue);
+  	randomMove(newValue, 1);
   }
 });
 
-function randomMove(x, y, radius){
+// **** Draw a circle at a random position (will occur on click)
+// **** Parameters: radius of new circle, opacity of new circle
+function randomMove(radius, opacity){
 	// Assuming the entire circle is within the limits of the canvas (browser window), the radius must be at least a radius-length within the canvas
 	var maxWidth = canvas.width - parseInt(radius);
 	var maxHeight = canvas.height - parseInt(radius);
 	var minWidth = 0 + parseInt(radius);
 	var minHeight = 0 + parseInt(radius);
 
+	// Generate random (x,y) coordinates
 	var newX = Math.floor((Math.random() * (maxWidth - minWidth)) + minWidth);
 	var newY = Math.floor((Math.random() * (maxHeight - minHeight)) + minHeight);
 
-	drawCircle(newX, newY, radius, pickColor(1));
+	drawCircle(newX, newY, radius, pickColor(opacity));
 	context.addHitRegion({id:'newCircle'});
 
 	// Another way, with circles that can go beyond the browser limit
