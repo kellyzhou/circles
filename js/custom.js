@@ -121,10 +121,9 @@ function getNewRadius(inputValueID){
 // Currently only works in FF or Chrome with experimental feature enabled
 canvas.addEventListener('click', function(event) {
   if(event.region) {
-  	// console.log(event.region);
   	var coordinates = [];
   	coordinates = regexCoordinates(event.region);
-  	// alert(event.region.fillStyle);
+  	// alert(event.region);
 
   	var newValue = getNewRadius('controls__circle-size');
 
@@ -132,8 +131,11 @@ canvas.addEventListener('click', function(event) {
   	var xStart = coordinates[0] - newValue;
   	var yStart = coordinates[1] - newValue;
 
-  	// newValue is radius (defaults to 30), * 2 for diameter
-  	context.clearRect(xStart, yStart, newValue * 2, newValue * 2); // (x, y, width, height)
+  	// Don't erase new circles (originals have already been cleared and moved)
+  	if ( event.region !== 'newCircle' ) {
+	  	// newValue is radius (defaults to 30), * 2 for diameter
+	  	context.clearRect(xStart, yStart, newValue * 2, newValue * 2); // (x, y, width, height)
+  	}
 
   	var regionID = coordinates[0] + "." + coordinates[1];
   	// alert(regionID);
@@ -155,6 +157,8 @@ function randomMove(x, y, radius){
 	var newY = Math.floor((Math.random() * (maxHeight - minHeight)) + minHeight);
 
 	drawCircle(newX, newY, radius, pickColor(1));
+	context.addHitRegion({id:'newCircle'});
+
 	// Another way, with circles that can go beyond the browser limit
 	// context.beginPath();
 	// context.clearRect();
