@@ -124,7 +124,7 @@ canvas.addEventListener('click', function(event) {
   	var coordinates = [];
   	coordinates = regexCoordinates(event.region);
 
-  	var newValue = getNewRadius('controls__circle-size');
+  	var newValue = getNewRadius('controls__circle-size'); // defaults to 30
 
   	// Get the left/top most coordinates of the square encapsulating the clicked circle (region ID coordinates minus radius)
   	var xStart = coordinates[0] - newValue;
@@ -132,14 +132,10 @@ canvas.addEventListener('click', function(event) {
 
   	// Don't erase new circles (originals have already been cleared and moved)
   	if ( event.region !== 'newCircle' ) {
-	  	// newValue is radius (defaults to 30), * 2 for diameter
+	  	// newValue is radius, * 2 for diameter
 	  	context.clearRect(xStart, yStart, newValue * 2, newValue * 2); // (x, y, width, height)
   	}
 
-  	var regionID = coordinates[0] + "." + coordinates[1];
-  	// var canvasID = 'canvas';
-
-  	// document.getElementById("'" + event.region + "'").setAttribute('style', 'background-color: red');
   	randomMove(newValue, 1);
   }
 });
@@ -158,7 +154,7 @@ function randomMove(radius, opacity){
 	var newY = Math.floor((Math.random() * (maxHeight - minHeight)) + minHeight);
 
 	drawCircle(newX, newY, radius, pickColor(opacity));
-	context.addHitRegion({id:'newCircle'});
+	context.addHitRegion({id:'newCircle'}); // Distinguish new circles from original ones
 
 	// Another way, with circles that can go beyond the browser limit
 	// context.beginPath();
