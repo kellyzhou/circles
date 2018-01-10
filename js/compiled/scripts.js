@@ -90,9 +90,6 @@ $(window).on('resize', function(){
 	refreshArt(newValue);
 });
 
-// var controlForm = document.getElementById('go');
-// go.onclick = getNewRadius;
-
 $('.controls').on('click', '#go', function(){
 	var newValue = getNewRadius('controls__circle-size');
 	refreshArt(newValue);
@@ -162,7 +159,7 @@ function randomMove(radius, opacity){
 }
 
 // **** Get (x,y) coordinates for radius of each circle
-// **** Parameters: string
+// **** Parameters: string (haystack to be processed)
 function regexCoordinates(text){
 	// Match numbers
 	var regex = /([0-9])+/g;
