@@ -105,7 +105,8 @@ $('#controls__circle-size').keydown(function(event){
 	}
 });
 
-
+// **** Get the user-inputted radius from a field
+// **** Parameters: ID of the field that will intake user input
 function getNewRadius(inputValueID){
 	// If the radius input field is not empty, use the value. Otherwise, default to radius = 30
 	var newRadius = document.getElementById(inputValueID).value.length !== 0 ? document.getElementById(inputValueID).value : 30;
