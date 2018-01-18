@@ -32,3 +32,13 @@ input, button, .controls {
 	right: 0;
 	top: 0;
 }
+
+.dialog-overlay {
+	background-color: rgba(#000000, 0.8);
+	bottom: 0;
+	display: none;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
