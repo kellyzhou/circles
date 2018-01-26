@@ -31,7 +31,7 @@ table {
   border-spacing: 0; }
 
 body, html {
-  background-color: #fbf7f0;
+  background-color: #fffffa;
   font-family: 'Raleway', Helvetica, Arial, sans-serif;
   height: 100%;
   margin: 0;
@@ -40,7 +40,7 @@ body, html {
   width: 100%; }
 
 button {
-  background-color: #fbf7f0;
+  background-color: #fffffa;
   border: none;
   border-radius: 5px;
   padding: 10px 15px; }
@@ -52,5 +52,14 @@ input, button, .controls {
   font-size: 14px;
   margin: 10px 10px 0px 0px;
   position: absolute;
+  right: 0;
+  top: 0; }
+
+.dialog-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: fixed;
   right: 0;
   top: 0; }
