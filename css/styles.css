@@ -60,6 +60,15 @@ input, button, .controls {
   bottom: 0;
   display: none;
   left: 0;
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0; }
+
+.dialog__content {
+  background-color: #fffffa;
+  left: 50%;
+  padding: 20px;
+  position: relative;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%; }
