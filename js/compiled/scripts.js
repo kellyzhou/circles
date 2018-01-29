@@ -65,6 +65,14 @@ function fillCanvasRandom(){
 }
 
 $(document).ready(function(){
+	var container = document.getElementById('dialog-container');
+	var dialog = document.getElementById('dialog');
+	window.onclick = function(event){
+		if ( event.target !== dialog ) {
+			container.style.display = 'none';
+		}
+	};
+	// $('#dialog').css('display', 'block');
 
 });
 
