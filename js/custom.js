@@ -160,10 +160,6 @@ function randomMove(radius, opacity){
 
 	drawCircle(newX, newY, radius, pickColor(opacity));
 	context.addHitRegion({id:'newCircle'}); // Distinguish new circles from original ones
-
-	// Another way, with circles that can go beyond the browser limit
-	// context.beginPath();
-	// context.clearRect();
 }
 
 // **** Get (x,y) coordinates for radius of each circle
@@ -178,8 +174,6 @@ function regexCoordinates(text){
 	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
 	return matches;
 }
-
-// console.log(regexCoordinates('208.704'));
 
 // **** Clear circles
 function clearArt(){
