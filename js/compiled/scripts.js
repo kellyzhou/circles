@@ -20,12 +20,14 @@ function drawCircle(x, y, radius, color){
 
 // **** To get random RGB values
 // **** Parameters: start and end values of the range of numbers
+// **** Returns int
 function getRandomNumber(start, end){
 	return Math.floor((Math.random() * (end - start)) + start);
 }
 
 // **** Return a random RGBA color string
 // **** Parameters: chosen opacity
+// **** Returns string
 function pickColor(opacity){
 	var red = getRandomNumber(0, 255);
 	var green = getRandomNumber(0, 255);
@@ -60,9 +62,6 @@ function fillCanvas(radius){
 	}
 }
 
-function fillCanvasRandom(){
-
-}
 
 $(document).ready(function(){
 	var container = document.getElementById('dialog-container');
@@ -113,6 +112,7 @@ $('#controls__circle-size').keydown(function(event){
 
 // **** Get the user-inputted radius from a field
 // **** Parameters: ID of the field that will intake user input
+// **** Returns int
 function getNewRadius(inputValueID){
 	// If the radius input field is not empty, use the value. Otherwise, default to radius = 30
 	var newRadius = document.getElementById(inputValueID).value.length !== 0 ? document.getElementById(inputValueID).value : 30;
@@ -135,7 +135,7 @@ canvas.addEventListener('click', function(event) {
   	var xStart = coordinates[0] - newValue;
   	var yStart = coordinates[1] - newValue;
 
-  	// Don't erase new circles (originals have already been cleared and moved)
+  	// Don't erase new circles (originals have already been cleared and moved), only erase original circles
   	if ( event.region !== 'newCircle' ) {
 	  	// newValue is radius, * 2 for diameter
 	  	context.clearRect(xStart, yStart, newValue * 2, newValue * 2); // (x, y, width, height)
@@ -160,14 +160,11 @@ function randomMove(radius, opacity){
 
 	drawCircle(newX, newY, radius, pickColor(opacity));
 	context.addHitRegion({id:'newCircle'}); // Distinguish new circles from original ones
-
-	// Another way, with circles that can go beyond the browser limit
-	// context.beginPath();
-	// context.clearRect();
 }
 
 // **** Get (x,y) coordinates for radius of each circle
 // **** Parameters: string (haystack to be processed)
+// **** Returns array
 function regexCoordinates(text){
 	// Match numbers
 	var regex = /([0-9])+/g;
@@ -178,8 +175,6 @@ function regexCoordinates(text){
 	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
 	return matches;
 }
-
-// console.log(regexCoordinates('208.704'));
 
 // **** Clear circles
 function clearArt(){
