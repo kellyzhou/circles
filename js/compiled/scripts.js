@@ -62,6 +62,61 @@ function fillCanvas(radius){
 	}
 }
 
+// **** Clear circles
+function clearArt(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// **** Reset circles
+function refreshArt(radius){
+	// Clear existing canvas (entire window)
+	clearArt();
+	fillCanvas(radius);
+}
+
+// **** Get (x,y) coordinates for radius of each circle
+// **** Parameters: string (haystack to be processed)
+// **** Returns array
+function regexCoordinates(text){
+	// Match numbers
+	var regex = /([0-9])+/g;
+
+	// Make sure it's a string and return all matches (vs exec)
+	var matches = String(text).match(regex);
+
+	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
+	return matches;
+}
+
+// **** Get the user-inputted radius from a field
+// **** Parameters: ID of the field that will intake user input
+// **** Returns int
+function getNewRadius(inputValueID){
+	// If the radius input field is not empty, use the value. Otherwise, default to radius = 30
+	var newRadius = document.getElementById(inputValueID).value.length !== 0 ? document.getElementById(inputValueID).value : 30;
+
+	// Convert from string
+	newRadius = parseInt(newRadius);
+	return newRadius;
+}
+
+// **** Draw a circle at a random position (will occur on click)
+// **** Parameters: radius of new circle, opacity of new circle
+function randomMove(radius, opacity){
+	// Assuming the entire circle is within the limits of the canvas (browser window), the radius must be at least a radius-length within the canvas
+	var maxWidth = canvas.width - parseInt(radius);
+	var maxHeight = canvas.height - parseInt(radius);
+	var minWidth = 0 + parseInt(radius);
+	var minHeight = 0 + parseInt(radius);
+
+	// Generate random (x,y) coordinates
+	var newX = Math.floor((Math.random() * (maxWidth - minWidth)) + minWidth);
+	var newY = Math.floor((Math.random() * (maxHeight - minHeight)) + minHeight);
+
+	drawCircle(newX, newY, radius, pickColor(opacity));
+	context.addHitRegion({id:'newCircle'}); // Distinguish new circles from original ones
+}
+
 
 $(document).ready(function(){
 	var container = document.getElementById('dialog-container');
@@ -110,18 +165,6 @@ $('#controls__circle-size').keydown(function(event){
 	}
 });
 
-// **** Get the user-inputted radius from a field
-// **** Parameters: ID of the field that will intake user input
-// **** Returns int
-function getNewRadius(inputValueID){
-	// If the radius input field is not empty, use the value. Otherwise, default to radius = 30
-	var newRadius = document.getElementById(inputValueID).value.length !== 0 ? document.getElementById(inputValueID).value : 30;
-
-	// Convert from string
-	newRadius = parseInt(newRadius);
-	return newRadius;
-}
-
 // **** Click on a circle to refresh all circles
 // Currently only works in FF or Chrome with experimental feature enabled
 canvas.addEventListener('click', function(event) {
@@ -144,47 +187,3 @@ canvas.addEventListener('click', function(event) {
   	randomMove(newValue, 1);
   }
 });
-
-// **** Draw a circle at a random position (will occur on click)
-// **** Parameters: radius of new circle, opacity of new circle
-function randomMove(radius, opacity){
-	// Assuming the entire circle is within the limits of the canvas (browser window), the radius must be at least a radius-length within the canvas
-	var maxWidth = canvas.width - parseInt(radius);
-	var maxHeight = canvas.height - parseInt(radius);
-	var minWidth = 0 + parseInt(radius);
-	var minHeight = 0 + parseInt(radius);
-
-	// Generate random (x,y) coordinates
-	var newX = Math.floor((Math.random() * (maxWidth - minWidth)) + minWidth);
-	var newY = Math.floor((Math.random() * (maxHeight - minHeight)) + minHeight);
-
-	drawCircle(newX, newY, radius, pickColor(opacity));
-	context.addHitRegion({id:'newCircle'}); // Distinguish new circles from original ones
-}
-
-// **** Get (x,y) coordinates for radius of each circle
-// **** Parameters: string (haystack to be processed)
-// **** Returns array
-function regexCoordinates(text){
-	// Match numbers
-	var regex = /([0-9])+/g;
-
-	// Make sure it's a string and return all matches (vs exec)
-	var matches = String(text).match(regex);
-
-	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
-	return matches;
-}
-
-// **** Clear circles
-function clearArt(){
-	context.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-// **** Reset circles
-function refreshArt(radius){
-	// Clear existing canvas (entire window)
-	clearArt();
-	fillCanvas(radius);
-}
-
