@@ -128,12 +128,13 @@ $(document).ready(function(){
 	};
 });
 
+// **** On load: fill the canvas with circles (default radius 30)
+// Reset button sets circle radius size at 30 and re-fills canvas
+// Clear button clears canvas
 $(window).on('load', function(){
 	fillCanvas(30);
 
 	$('#reset').on('click', function(){
-		var setRadius = document.getElementById('controls__circle-size');
-		setRadius.value = '';
 		refreshArt(30);
 	});
 
@@ -142,6 +143,7 @@ $(window).on('load', function(){
 	});
 });
 
+// **** On resize, window will re-fill with circles based on user input (otherwise default radius is 30)
 $(window).on('resize', function(){
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
@@ -151,12 +153,14 @@ $(window).on('resize', function(){
 	refreshArt(newValue);
 });
 
+// **** Clicking go takes in user input and re-fills canvas with user-inputted radius
 $('.controls').on('click', '#go', function(){
 	var newValue = getNewRadius('controls__circle-size');
 	refreshArt(newValue);
 
 });
 
+// **** User hitting enter while inputting a radius will also re-fill canvas (same as clicking 'Go')
 $('#controls__circle-size').keydown(function(event){
 	var x = event.keyCode; // Enter key has a keycode of 13
 	if ( x == 13 ) {
