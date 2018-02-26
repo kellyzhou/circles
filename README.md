@@ -10,4 +10,5 @@ Please open in:
 If you still cannot view the browser window populating with circles after setting either of these settings, please submit an issue.
 
 ## Start
-![What your browser should look like](https://github.com/kellyzhou/circles/circles-initial-screenshot.png "Initial screen")
+What your browser should look like:
+![What your browser should look like](https://kellyzhou.github.io/circles/circles-initial-screenshot.png "Initial screen")
