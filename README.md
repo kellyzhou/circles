@@ -12,3 +12,8 @@ If you still cannot view the browser window populating with circles after settin
 ## Start
 What your browser should look like:
 ![What your browser should look like](https://kellyzhou.github.io/circles/circles-initial-screenshot.png "Initial screen")
+Repopulate the circles by:
+* Inputting your own radius in the top right corner and clicking the 'Go' button or hitting the Enter key
+* Resizing the browser
+
+Clear the circles by hitting the 'Clear' button.
