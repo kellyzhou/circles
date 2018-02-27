@@ -20,12 +20,14 @@ function drawCircle(x, y, radius, color){
 
 // **** To get random RGB values
 // **** Parameters: start and end values of the range of numbers
+// **** Returns int
 function getRandomNumber(start, end){
 	return Math.floor((Math.random() * (end - start)) + start);
 }
 
 // **** Return a random RGBA color string
 // **** Parameters: chosen opacity
+// **** Returns string
 function pickColor(opacity){
 	var red = getRandomNumber(0, 255);
 	var green = getRandomNumber(0, 255);
@@ -60,59 +62,35 @@ function fillCanvas(radius){
 	}
 }
 
-function fillCanvasRandom(){
-
+// **** Clear circles
+function clearArt(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-$(document).ready(function(){
-	var container = document.getElementById('dialog-container');
-	var dialog = document.getElementById('dialog');
-	window.onclick = function(event){
-		if ( event.target == container ) {
-			container.style.display = 'none';
-		}
-	};
-});
+// **** Reset circles
+function refreshArt(radius){
+	// Clear existing canvas (entire window)
+	clearArt();
+	fillCanvas(radius);
+}
 
-$(window).on('load', function(){
-	fillCanvas(30);
+// **** Get (x,y) coordinates for radius of each circle
+// **** Parameters: string (haystack to be processed)
+// **** Returns array
+function regexCoordinates(text){
+	// Match numbers
+	var regex = /([0-9])+/g;
 
-	$('#reset').on('click', function(){
-		var setRadius = document.getElementById('controls__circle-size');
-		setRadius.value = '';
-		refreshArt(30);
-	});
+	// Make sure it's a string and return all matches (vs exec)
+	var matches = String(text).match(regex);
 
-	$('#clear').on('click', function(){
-		clearArt();
-	});
-});
-
-$(window).on('resize', function(){
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-
-	// Reset using user input
-	var newValue = getNewRadius('controls__circle-size');
-	refreshArt(newValue);
-});
-
-$('.controls').on('click', '#go', function(){
-	var newValue = getNewRadius('controls__circle-size');
-	refreshArt(newValue);
-
-});
-
-$('#controls__circle-size').keydown(function(event){
-	var x = event.keyCode; // Enter key has a keycode of 13
-	if ( x == 13 ) {
-		var newValue = getNewRadius('controls__circle-size');
-		refreshArt(newValue);
-	}
-});
+	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
+	return matches;
+}
 
 // **** Get the user-inputted radius from a field
 // **** Parameters: ID of the field that will intake user input
+// **** Returns int
 function getNewRadius(inputValueID){
 	// If the radius input field is not empty, use the value. Otherwise, default to radius = 30
 	var newRadius = document.getElementById(inputValueID).value.length !== 0 ? document.getElementById(inputValueID).value : 30;
@@ -121,29 +99,6 @@ function getNewRadius(inputValueID){
 	newRadius = parseInt(newRadius);
 	return newRadius;
 }
-
-// **** Click on a circle to refresh all circles
-// Currently only works in FF or Chrome with experimental feature enabled
-canvas.addEventListener('click', function(event) {
-  if(event.region) {
-  	var coordinates = [];
-  	coordinates = regexCoordinates(event.region);
-
-  	var newValue = getNewRadius('controls__circle-size'); // defaults to 30
-
-  	// Get the left/top most coordinates of the square encapsulating the clicked circle (region ID coordinates minus radius)
-  	var xStart = coordinates[0] - newValue;
-  	var yStart = coordinates[1] - newValue;
-
-  	// Don't erase new circles (originals have already been cleared and moved)
-  	if ( event.region !== 'newCircle' ) {
-	  	// newValue is radius, * 2 for diameter
-	  	context.clearRect(xStart, yStart, newValue * 2, newValue * 2); // (x, y, width, height)
-  	}
-
-  	randomMove(newValue, 1);
-  }
-});
 
 // **** Draw a circle at a random position (will occur on click)
 // **** Parameters: radius of new circle, opacity of new circle
@@ -162,28 +117,77 @@ function randomMove(radius, opacity){
 	context.addHitRegion({id:'newCircle'}); // Distinguish new circles from original ones
 }
 
-// **** Get (x,y) coordinates for radius of each circle
-// **** Parameters: string (haystack to be processed)
-function regexCoordinates(text){
-	// Match numbers
-	var regex = /([0-9])+/g;
 
-	// Make sure it's a string and return all matches (vs exec)
-	var matches = String(text).match(regex);
+$(document).ready(function(){
+	var container = document.getElementById('dialog-container');
+	var dialog = document.getElementById('dialog');
+	window.onclick = function(event){
+		if ( event.target == container ) {
+			container.style.display = 'none';
+		}
+	};
+});
 
-	// Returns array of numbers. match[0] and match[1] are (x,y) coordinates
-	return matches;
-}
+// **** On load: fill the canvas with circles (default radius 30)
+// Reset button sets circle radius size at 30 and re-fills canvas
+// Clear button clears canvas
+$(window).on('load', function(){
+	fillCanvas(30);
 
-// **** Clear circles
-function clearArt(){
-	context.clearRect(0, 0, canvas.width, canvas.height);
-}
+	$('#reset').on('click', function(){
+		refreshArt(30);
+	});
 
-// **** Reset circles
-function refreshArt(radius){
-	// Clear existing canvas (entire window)
-	clearArt();
-	fillCanvas(radius);
-}
+	$('#clear').on('click', function(){
+		clearArt();
+	});
+});
 
+// **** On resize, window will re-fill with circles based on user input (otherwise default radius is 30)
+$(window).on('resize', function(){
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+	// Reset using user input
+	var newValue = getNewRadius('controls__circle-size');
+	refreshArt(newValue);
+});
+
+// **** Clicking go takes in user input and re-fills canvas with user-inputted radius
+$('.controls').on('click', '#go', function(){
+	var newValue = getNewRadius('controls__circle-size');
+	refreshArt(newValue);
+
+});
+
+// **** User hitting enter while inputting a radius will also re-fill canvas (same as clicking 'Go')
+$('#controls__circle-size').keydown(function(event){
+	var x = event.keyCode; // Enter key has a keycode of 13
+	if ( x == 13 ) {
+		var newValue = getNewRadius('controls__circle-size');
+		refreshArt(newValue);
+	}
+});
+
+// **** Click on a circle to refresh all circles
+// Currently only works in FF or Chrome with experimental feature enabled
+canvas.addEventListener('click', function(event) {
+  if(event.region) {
+  	var coordinates = [];
+  	coordinates = regexCoordinates(event.region);
+
+  	var newValue = getNewRadius('controls__circle-size'); // defaults to 30
+
+  	// Get the left/top most coordinates of the square encapsulating the clicked circle (region ID coordinates minus radius)
+  	var xStart = coordinates[0] - newValue;
+  	var yStart = coordinates[1] - newValue;
+
+  	// Don't erase new circles (originals have already been cleared and moved), only erase original circles
+  	if ( event.region !== 'newCircle' ) {
+	  	// newValue is radius, * 2 for diameter
+	  	context.clearRect(xStart, yStart, newValue * 2, newValue * 2); // (x, y, width, height)
+  	}
+
+  	randomMove(newValue, 1);
+  }
+});
