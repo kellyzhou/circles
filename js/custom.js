@@ -136,6 +136,7 @@ $(window).on('load', function(){
 
 	$('#reset').on('click', function(){
 		refreshArt(30);
+		$('#controls__circle-size').val('30');
 	});
 
 	$('#clear').on('click', function(){
